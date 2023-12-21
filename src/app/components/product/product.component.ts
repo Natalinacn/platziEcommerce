@@ -15,6 +15,7 @@ export class ProductComponent implements OnInit {
   products: Product[] = [];
   id: any;
   titulo: any;
+  price: any;
   mostratCategoria!: string;
 
 
@@ -37,6 +38,7 @@ export class ProductComponent implements OnInit {
 
     this.route.paramMap.subscribe((data) => {
       this.titulo = data.get('titulo');
+      this.price = Number(data.get('price'))
       this.id = Number(data.get('id'));
       if (this.id) {
         this.categoryService.findAllByCategoryId(this.id)?.subscribe((res) => {
@@ -51,6 +53,12 @@ export class ProductComponent implements OnInit {
 
         });
         
+      } else if(this.price) {
+        this.productService.filterByPrice(this.price)?.subscribe((res) => {
+          this.products = res;
+
+        });
+
       }
       else {
         this.productService.getAll()?.subscribe((res) => {

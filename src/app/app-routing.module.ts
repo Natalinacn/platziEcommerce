@@ -20,7 +20,11 @@ const routes: Routes = [
         component: ProductComponent,
       },
       {
-        path: 'filtro/:titulo',
+        path: 'filtro/titulo/:titulo',
+        component: ProductComponent,
+      },
+      {
+        path: 'filtro/precio/:price',
         component: ProductComponent,
       }
     ],

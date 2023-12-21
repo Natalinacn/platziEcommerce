@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 })
 export class SidebarComponent implements OnInit{
   titleValue: string = "";
-
+  priceValue: string = "";
 
 
   constructor(
@@ -21,7 +21,13 @@ export class SidebarComponent implements OnInit{
   }
 
   filterByTitle(){
-    this.router.navigate(["/productos/filtro", this.titleValue])
+    this.router.navigate(["/productos/filtro/titulo", this.titleValue])
+  }
+
+  filterByPrice(){
+    this.router.navigate(['/productos/filtro/precio', this.priceValue])
+    console.log(this.priceValue);
+    
   }
 
 }

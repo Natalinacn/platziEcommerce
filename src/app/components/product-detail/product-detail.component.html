@@ -56,7 +56,6 @@
   </div>
 </div> -->
 
-
 <div class="row align-items-center justify-content-center" style="height: 90vh">
   <div class="col-6 text-center">
     <div id="carouselExample" class="carousel slide">
@@ -66,7 +65,8 @@
             [src]="img"
             class="d-block w-100 object-fit-contain"
             style="max-height: 70vh"
-            alt="..."
+            alt="producto.title"
+            (error)="handleImageError($event)"
           />
         </div>
       </div>
@@ -96,21 +96,22 @@
         <strong>{{ producto.title }}</strong>
       </div>
       <div class="card-body">
-        <h3 class="card-title fs-2">Categoria : {{ producto.category.name }}</h3>
+        <h3 class="card-title fs-2">
+          Categoria : {{ producto.category.name }}
+        </h3>
         <p class="card-text fs-4">
           {{ producto.description }}
         </p>
-       <h3>Price : ${{ producto.price }}</h3> 
+        <h3>Price : ${{ producto.price }}</h3>
       </div>
       <div class="card-footer text-body-secondary fs-4">
         <button
-        href="#"
-        class="btn btn-lg btn-primary fw-bolder"
-        (click)="comprar(producto)"
-      >
-        Comprar
-      </button>
-
+          href="#"
+          class="btn btn-lg btn-primary fw-bolder"
+          (click)="comprar(producto)"
+        >
+          Comprar
+        </button>
       </div>
     </div>
   </div>

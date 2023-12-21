@@ -42,4 +42,9 @@ export class ProductComponent implements OnInit {
   redirigido(id: number) {
     this.router.navigate(['/productos/detalle', id]);
   }
+
+  handleImageError(event: any) {
+    event.target.src =
+      'https://img.freepik.com/vector-premium/foto-vacia-sombra-pegada-cinta-adhesiva-ilustracion_87543-3824.jpg';
+  }
 }

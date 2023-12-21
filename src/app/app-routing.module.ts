@@ -14,6 +14,7 @@ const routes: Routes = [
       {
         path: 'detalle/:id',
         component: ProductDetailComponent,
+        title: 'Product detail',
       },
       {
         path: 'categories/:id',
@@ -26,7 +27,11 @@ const routes: Routes = [
       {
         path: 'filtro/precio/:price',
         component: ProductComponent,
-      }
+      },
+      {
+        path: 'filtro/rango_precio/:rangePrice',
+        component: ProductComponent,
+      },
     ],
   },
   {

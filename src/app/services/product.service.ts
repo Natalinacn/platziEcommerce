@@ -30,7 +30,7 @@ export class ProductService {
   }
 
   public filterByPriceRange(
-    minPrice: number,
+    minPrice: number = 1,
     maxPrice: number
   ): Observable<any> | undefined {
     return this.http.get(

@@ -13,11 +13,12 @@ import { Category } from 'src/app/models/Category';
 })
 export class ProductComponent implements OnInit {
   products: Product[] = [];
+  mostratCategoria!: string;
   id: any;
   titulo: any;
   price: any;
-  mostratCategoria!: string;
-
+  minPriceValue!: number;
+  maxPriceValue!: number;
 
   constructor(
     public productService: ProductService,
@@ -27,49 +28,44 @@ export class ProductComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-
     this.list();
-
   }
 
-
-
   list(): void {
-
     this.route.paramMap.subscribe((data) => {
       this.titulo = data.get('titulo');
-      this.price = Number(data.get('price'))
+      this.price = Number(data.get('price'));
       this.id = Number(data.get('id'));
+      this.minPriceValue = Number(data.get('rangePrice')?.split('-')[0]) || 1;
+      this.maxPriceValue =
+        Number(data.get('rangePrice')?.split('-')[1]) || 9999999999;
+
       if (this.id) {
         this.categoryService.findAllByCategoryId(this.id)?.subscribe((res) => {
-          this.products = res;  
+          this.products = res;
           this.mostratCategoria = this.products[0].category.name;
         });
-
-      } 
-      else if (this.titulo){
+      } else if (this.titulo) {
         this.productService.filterByTitle(this.titulo)?.subscribe((res) => {
           this.products = res;
-
         });
-        
-      } else if(this.price) {
+      } else if (this.price) {
         this.productService.filterByPrice(this.price)?.subscribe((res) => {
           this.products = res;
-
         });
-
-      }
-      else {
+      } else if (this.minPriceValue || this.maxPriceValue) {
+        this.productService
+          .filterByPriceRange(this.minPriceValue, this.maxPriceValue)
+          ?.subscribe((res) => {
+            this.products = res;
+          });
+      } else {
         this.productService.getAll()?.subscribe((res) => {
           this.products = res;
-          this.mostratCategoria = "Todos"
+          this.mostratCategoria = 'Todos';
         });
       }
-
     });
-
-    
   }
 
   redirigido(id: number) {
@@ -80,7 +76,4 @@ export class ProductComponent implements OnInit {
     event.target.src =
       'https://img.freepik.com/vector-premium/foto-vacia-sombra-pegada-cinta-adhesiva-ilustracion_87543-3824.jpg';
   }
-
-
-
 }

@@ -23,9 +23,10 @@
       />
     </li>
     <li>
-      <p>Rango Precio</p>
-      <label for="">Precio Minimo</label>
+
+      <label for="rango">Rango de Precio</label>
       <input
+      placeholder="Máximo"
         (input)="filterByPriceRange()"
         type="number"
         id="minPrice"
@@ -33,8 +34,9 @@
         [(ngModel)]="minPriceValue"
       />
 
-      <label for="">Precio Máximo</label>
       <input
+      class="mt-2"
+      placeholder="Máximo"
         type="number"
         (input)="filterByPriceRange()"
         id="maxPrice"
@@ -42,5 +44,8 @@
         [(ngModel)]="maxPriceValue"
       />
     </li>
+
   </ul>
+  <button class="btn btn-sm  mt-2 text-white ">Filtrar</button>
+  <button class="btn btn-sm  mt-2 text-white ">Limpiar</button>
 </div>

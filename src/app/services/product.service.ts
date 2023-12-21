@@ -21,6 +21,23 @@ export class ProductService {
     return this.http.get(`${this.URL_API}/${id}`);
   }
 
+  public filterByTitle(title: string): Observable<any> | undefined {
+    return this.http.get(`${this.URL_API}/?title=${title}`);
+  }
+
+  public filterByPrice(price: number): Observable<any> | undefined {
+    return this.http.get(`${this.URL_API}/?price=${price}`);
+  }
+
+  public filterByPriceRange(
+    minPrice: number,
+    maxPrice: number
+  ): Observable<any> | undefined {
+    return this.http.get(
+      `${this.URL_API}/?price_min=${minPrice}&price_max=${maxPrice}`
+    );
+  }
+
   public countCartProducts(cantidad: number) {
     this.totalProducts = cantidad;
     localStorage.setItem('totalProducts', JSON.stringify(cantidad));

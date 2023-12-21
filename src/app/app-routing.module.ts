@@ -19,6 +19,10 @@ const routes: Routes = [
         path: 'categories/:id',
         component: ProductComponent,
       },
+      {
+        path: 'filtro/:titulo',
+        component: ProductComponent,
+      }
     ],
   },
   {

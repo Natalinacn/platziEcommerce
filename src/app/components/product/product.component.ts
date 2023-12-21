@@ -4,6 +4,7 @@ import { ProductService } from 'src/app/services/product.service';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { CategoryService } from 'src/app/services/category.service';
+import { Category } from 'src/app/models/Category';
 
 @Component({
   selector: 'app-product',
@@ -13,6 +14,10 @@ import { CategoryService } from 'src/app/services/category.service';
 export class ProductComponent implements OnInit {
   products: Product[] = [];
   id: any;
+  titulo: any;
+  mostratCategoria!: string;
+
+
   constructor(
     public productService: ProductService,
     private router: Router,
@@ -21,22 +26,42 @@ export class ProductComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+
     this.list();
+
   }
 
+
+
   list(): void {
+
     this.route.paramMap.subscribe((data) => {
+      this.titulo = data.get('titulo');
       this.id = Number(data.get('id'));
       if (this.id) {
         this.categoryService.findAllByCategoryId(this.id)?.subscribe((res) => {
-          this.products = res;
+          this.products = res;  
+          this.mostratCategoria = this.products[0].category.name;
         });
-      } else {
+
+      } 
+      else if (this.titulo){
+        this.productService.filterByTitle(this.titulo)?.subscribe((res) => {
+          this.products = res;
+
+        });
+        
+      }
+      else {
         this.productService.getAll()?.subscribe((res) => {
           this.products = res;
+          this.mostratCategoria = "Todos"
         });
       }
+
     });
+
+    
   }
 
   redirigido(id: number) {
@@ -47,4 +72,7 @@ export class ProductComponent implements OnInit {
     event.target.src =
       'https://img.freepik.com/vector-premium/foto-vacia-sombra-pegada-cinta-adhesiva-ilustracion_87543-3824.jpg';
   }
+
+
+
 }

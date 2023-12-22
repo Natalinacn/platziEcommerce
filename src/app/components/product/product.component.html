@@ -1,7 +1,7 @@
 <ng-container *ngIf="products.length > 0; else noProducts">
   <h2 class="text-center pt-5">Mostrando: {{ mostratCategoria }}</h2>
   <div class="row g-4 mt-5 card-container justify-content-center">
-    <div class="col-3 text-center" *ngFor="let product of products">
+    <div class="col-4 text-center" *ngFor="let product of products">
       <div class="card" (click)="redirigido(product.id)">
         <img
           [src]="product.images[0]"

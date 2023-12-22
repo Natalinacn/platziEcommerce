@@ -13,7 +13,7 @@ import { Category } from 'src/app/models/Category';
 })
 export class ProductComponent implements OnInit {
   products: Product[] = [];
-  mostratCategoria!: string;
+  mostratCategoria: string = 'Todos';
   id: any;
   titulo: any;
   price: any;

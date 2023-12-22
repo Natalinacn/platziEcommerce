@@ -31,6 +31,7 @@ export class ProductDetailComponent implements OnInit {
       let cartString = localStorage.getItem('cart');
       if (cartString) this.cart = JSON.parse(cartString);
       else this.cart = { products: [], totalProducts: 0 };
+      producto.quantity = 1;
       this.cart.products.push(producto);
       this.cart.totalProducts = this.cart.products.length;
       this.productService.setStorage('cart', this.cart);

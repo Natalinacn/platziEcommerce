@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-sidebar',
@@ -8,13 +7,12 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./sidebar.component.css'],
 })
 export class SidebarComponent implements OnInit {
-  titleValue: string = '';
-  priceValue: string = '';
-  currentUrl: any = '';
-  minPriceValue!: number;
-  maxPriceValue!: number;
+  titleValue?: string;
+  priceValue?: string;
+  minPriceValue?: number;
+  maxPriceValue?: number;
 
-  constructor(private router: Router, private route: ActivatedRoute) {}
+  constructor(private router: Router) {}
 
   ngOnInit(): void {}
 
@@ -31,5 +29,13 @@ export class SidebarComponent implements OnInit {
       '/productos/filtro/rango_precio',
       `${this.minPriceValue}-${this.maxPriceValue}`,
     ]);
+  }
+
+  limpiar() {
+    this.titleValue = undefined;
+    this.priceValue = undefined;
+    this.minPriceValue = undefined;
+    this.maxPriceValue = undefined;
+    this.router.navigate(['/productos']);
   }
 }

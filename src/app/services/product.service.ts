@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { Cart } from '../models/Cart';
 
 @Injectable({
@@ -8,7 +8,8 @@ import { Cart } from '../models/Cart';
 })
 export class ProductService {
   private URL_API: string = 'https://api.escuelajs.co/api/v1/products';
-
+  private totalProductsSubject = new Subject<number>();
+  totalProducts$ = this.totalProductsSubject.asObservable();
   totalProducts: any = Number(localStorage.getItem('totalProducts')) || 0;
 
   constructor(private http: HttpClient) {}
@@ -50,5 +51,10 @@ export class ProductService {
 
   calcularTotal(cart: any) {
     return cart.map((p: any) => p.price).reduce((a: any, b: any) => a + b);
+  }
+
+  public clearLocalStorage() {
+    localStorage.clear();
+    this.countCartProducts(0);
   }
 }

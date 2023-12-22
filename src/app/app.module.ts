@@ -12,6 +12,7 @@ import { MainComponent } from './components/main/main.component';
 import { ProductComponent } from './components/product/product.component';
 import { ProductDetailComponent } from './components/product-detail/product-detail.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { CartComponent } from './components/cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
     ProductComponent,
     ProductDetailComponent,
     SidebarComponent,
+    CartComponent,
   ],
   imports: [
     BrowserModule,

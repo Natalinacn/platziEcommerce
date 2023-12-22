@@ -43,10 +43,13 @@ export class CartComponent implements OnInit {
     );
   }
   purchase() {
-    alert('Compra realizada con éxito.');
-    this.saveCart();
-    this.productService.clearLocalStorage();
-    this.router.navigate(['']);
+    let confirmar = confirm('¿Desea realizar la compra?');
+    if (confirmar) {
+      alert('Compra realizada con éxito.');
+      this.saveCart();
+      this.productService.clearLocalStorage();
+      this.router.navigate(['']);
+    }
   }
 
   saveCart() {

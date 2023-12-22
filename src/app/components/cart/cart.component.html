@@ -1,4 +1,4 @@
-<div class="container mt-5">
+<div *ngIf="cart; else emptyCartTemplate" class="container mt-5">
   <h2>Carrito de Compras</h2>
   <ul class="list-group">
     <li *ngFor="let product of cart.products" class="list-group-item">
@@ -29,3 +29,8 @@
     </button>
   </div>
 </div>
+<ng-template #emptyCartTemplate>
+  <div class="container mt-5 card-container">
+    <h2 class="card-container text-center">No tiene productos en su carrito</h2>
+  </div>
+</ng-template>
